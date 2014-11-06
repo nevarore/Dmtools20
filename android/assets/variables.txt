@@ -1,0 +1,391 @@
+{
+  "variables":[
+  {
+    "id":1,
+    "name":"XP",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd"
+    "A":{
+            "type":"table",
+            "tablename":"xp",
+            "colref":"Level",            
+            "value":"4",
+            "colresult":"Experience Points"            
+        },
+    "B":{
+            "type":"none"            
+        },
+    "phoneNumbers":[9988664422, 1234567890],
+    "role":"Developer"
+   },
+   {
+    "id":2,
+    "name":"AC",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd"
+    "A":{
+            "type":"table",
+            "tablename":"armor",
+            "colref":"Armor",            
+            "value":"Chain mail",
+            "colresult":"Armor Class (AC)"            
+        },
+    "B":{
+            "type":"table",  
+            "tablename":"abilityScore",
+            "colref":"Score",            
+            "value":"17",
+            "colresult":"Modifier"                    
+        },    
+    "role":"Developer"
+   },
+   {
+    "id":3,
+    "name":"FOR",    
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesRoll"
+    "A":{
+            "type":"value",   
+            "name":"Nb Dice",            
+            "value":"3"                        
+        },
+    "B":{
+            "type":"value",   
+            "name":"Dice type",                     
+            "value":"6"                                
+        },    
+    "role":"Developer"
+   },
+   {
+    "id":4,
+    "name":"DEX",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesRoll",
+    "A":{
+            "type":"value",   
+            "name":"Nb Dice",            
+            "value":"3"                        
+        },
+    "B":{
+            "type":"value",   
+            "name":"Dice type",                     
+            "value":"6"                                
+        }  
+   },
+   {
+    "id":5,
+    "name":"FORBonus",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesEval",   
+    "A":{
+            "type":"table",  
+            "tablename":"abilityScore",
+            "colref":"Score",            
+            "value":"0",
+            "colresult":"Modifier"                    
+        },     
+    "B":{
+        "type":"variable",   
+            "name":"FOR",            
+            "value":"0"              
+    	},     
+    "role":"Developer"
+   },
+   {
+    "id":6,
+    "name":"DEXBonus",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesEval",
+    "A":{
+            "type":"table",  
+            "tablename":"abilityScore",
+            "colref":"Score",            
+            "value":"1",
+            "colresult":"Modifier"                    
+        },    
+    "B":{
+            "type":"variable",   
+            "name":"DEX",            
+            "value":"0"                        
+        }      
+   },
+   {
+    "id":7,
+    "name":"Hit Dice",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd",
+    "A":{
+            "type":"table",  
+            "tablename":"Classes",
+            "colref":"Class",            
+            "value":"Fighter",
+            "colresult":"Hit Die"                    
+        },    
+    "B":{
+            "type":"none"                                    
+        }      
+   },
+   {
+    "id":7,
+    "name":"Hit Point Level1",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd",
+    "A":{
+            "type":"table",  
+            "tablename":"Classes",
+            "colref":"Class",            
+            "value":"Fighter",
+            "colresult":"Hit Die"                    
+        },    
+    "B":{
+            "type":"variable",
+            "name":"CONBonus"                                   
+        }      
+   },
+   {
+    "id":8,
+    "name":"Hit Point false",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd",
+    "A":{
+            "type":"table",  
+            "tablename":"Classes",
+            "colref":"Class",            
+            "value":"Fighter",
+            "colresult":"Hit Die"                    
+        },    
+    "B":{
+            "type":"variable",
+            "name":"Hit Point Level1"                                    
+        }      
+   },
+   {
+    "id":9,
+    "name":"Hit Point Roll",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesRoll",
+    "A":{
+    		"comment":"getting level as number of dice",
+            "type":"variable",   
+            "name":"Level",            
+            "value":"0"                        
+        },
+    "B":{
+    		"comment":"getting dice type", 
+            "type":"variable",   
+            "name":"Hit Dice",                     
+            "value":"0"                                
+        }  
+   },
+   {
+    "id":10,
+    "name":"Level",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd",
+    "A":{
+    		"comment":"simple level val",
+            "type":"value",   
+            "name":"Level",            
+            "value":"2"                        
+        },
+    "B":{    		
+            "type":"none",
+                                            
+        }  
+   },
+   {
+    "id":11,
+    "name":"Final Hit Point",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd",
+    "A":{
+    		"comment":"Add Hit Point + base",
+            "type":"variable",   
+            "name":"Hit Point Level1",                     
+            "value":"0"                       
+        },
+    "B":{    		
+            "type":"variable",   
+            "name":"Hit Point Roll",                     
+            "value":"0"             
+        }  
+   },
+   {
+    "id":12,
+    "name":"CON",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesRoll",
+    "A":{
+            "type":"value",   
+            "name":"Nb Dice",            
+            "value":"3"                        
+        },
+    "B":{
+            "type":"value",   
+            "name":"Dice type",                     
+            "value":"6"                                
+        }  
+   },
+   {
+    "id":13,
+    "name":"CONBonus",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesEval",
+    "A":{
+            "type":"table",  
+            "tablename":"abilityScore",
+            "colref":"Score",            
+            "value":"1",
+            "colresult":"Modifier"                    
+        },    
+    "B":{
+            "type":"variable",   
+            "name":"CON",            
+            "value":"0"                        
+     }  
+   },
+   {
+    "id":14,
+    "name":"Initiative Roll",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesRoll",
+    "A":{
+    		"comment":". The initiative order remains the same from round to round."
+            "type":"value",                  
+            "name":"nb dice",
+            "value":"1"                    
+        },    
+    "B":{
+            "type":"value",
+            "name":"dice",
+            "value":"20"                                   
+        }      
+   },
+   {
+    "id":15,
+    "name":"Initiative",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesAdd",
+    "A":{
+    		"comment":". The initiative order remains the same from round to round."
+            "type":"variable",                  
+            "name":"Initiative Roll",
+            "value":"0"                    
+        },    
+    "B":{
+            "type":"variable",
+            "name":"DEXBonus",
+            "value":"0"                                   
+        }      
+   },
+   {
+    "id":16,
+    "name":"Spell List Roll test",
+    "repeatable":true,
+    "rule":"neva.eco.rules.core.RulesRoll",
+    "A":{
+    		"comment":"get a random spell"
+            "type":"value",                  
+            "name":"nb dice",
+            "value":"1"          
+        },    
+    "B":{
+            "type":"value",
+            "name":"dice",
+            "value":"14"                                   
+        }      
+   },
+   {
+    "id":17,
+    "name":"Get Spell test",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesEval",
+    "A":{
+    		"type":"table",
+    		"tablename":"wizard spells",
+            "colref":"Number",            
+            "value":"0",
+            "colresult":"1st Level"   
+        },    
+    "B":{
+            "type":"variable",
+            "name":"Spell List Roll test",
+            "value":"0"                                   
+        }      
+   },
+   {
+    "id":18,
+    "name":"Get Spell test repeat",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesEval",
+    "A":{
+    		"type":"table",
+    		"tablename":"wizard spells",
+            "colref":"Number",            
+            "value":"0",
+            "colresult":"1st Level"   
+        },    
+    "B":{
+            "type":"variable",
+            "name":"Spell List Roll test",
+            "value":"0"                                   
+        }      
+   },
+   {
+    "id":19,
+    "name":"Iterator Get Spell test",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesIterator",
+    "A":{
+    		"comment":"A=variable a iterer",
+    		"type":"variable",
+    		"name":"Get Spell for iterator"               
+        },    
+    "B":{
+    		"comment":"B=variable ou value d iteration",
+            "type":"value",            
+            "value":"5"                                   
+        }      
+   }, 
+   {
+    "id":20,
+    "name":"Get Spell for iterator",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesEval",
+    "A":{
+    		"type":"table",
+    		"tablename":"wizard spells",
+            "colref":"Number",            
+            "value":"0",
+            "colresult":"1st Level"   
+        },    
+    "B":{
+            "type":"variable",
+            "name":"Spell List Roll test",
+            "value":"0"                                   
+        }      
+   },
+   {
+    "id":21,
+    "name":"Iterator Get Spell test with table get",
+    "repeatable":false,
+    "rule":"neva.eco.rules.core.RulesIterator",
+    "A":{
+    		"comment":"A=variable a iterer",
+    		"type":"variable",
+    		"name":"Get Spell for iterator"               
+        },    
+    "B":{
+    		"comment":"B=variable ou value d iteration",
+            "type":"table",
+    		"tablename":"cleric",
+            "colref":"Level",            
+            "value":"4",
+            "colresult":"2nd"                                  
+        }      
+   }
+   
+    
+   
+   ]
+}

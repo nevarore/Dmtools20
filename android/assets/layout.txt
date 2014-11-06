@@ -1,0 +1,24 @@
+{
+  "filename":"layout.txt",
+  "layout":[
+  {
+    "id":1,
+    "name":"XP",    
+    "title":"Exp",
+    "layout":"neva.eco.rules.layout.Item"
+    "variable":"XP"
+    "Bound":{
+            "x":200,
+            "y":200,
+            "sizex":100,            
+            "sizey":30                        
+        },
+    "B":{
+            "type":"none"            
+        }    
+   }
+   
+    
+   
+   ]
+}
