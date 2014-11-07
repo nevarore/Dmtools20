@@ -26,6 +26,10 @@ public class RulesLabel extends Label implements ItemInf  {
 	String name;
 	
 	LayoutItem item;
+	
+	TextButton moveButton=null;	    
+    TextButton deleteButton=null;	
+    TextButton okButton=null;	
 
 	/* (non-Javadoc)
 	 * @see neva.eco.rules.ui.ItemInf#draw(com.badlogic.gdx.graphics.g2d.Batch, float)
@@ -68,9 +72,9 @@ public class RulesLabel extends Label implements ItemInf  {
 	{
 		// menu
 
-		final TextButton moveButton = new TextButton ( "<->", skin );	    
-	    final TextButton deleteButton = new TextButton ( "-", skin );	
-	    final TextButton okButton = new TextButton ( "ok", skin );	       
+		moveButton = new TextButton ( "<->", skin );	    
+	    deleteButton = new TextButton ( "-", skin );	
+	    okButton = new TextButton ( "ok", skin );	       
 	    
 	    table = new Table();	
 	    //table.setFillParent(true);
@@ -90,10 +94,7 @@ public class RulesLabel extends Label implements ItemInf  {
 	        @Override
 	        public void clicked(InputEvent event, float x, float y) {	          
 	            //((Game)Gdx.app.getApplicationListener()).setScreen(new Splash());
-	        	System.out.println("Ok clicked");
-	        	okButton.setVisible(false); 
-	        	moveButton.setVisible(false); 
-	        	deleteButton.setVisible(false); 
+	        	System.out.println("Ok clicked");       	
 	        	
 	        	setFocused(false);
 	        }
@@ -118,14 +119,14 @@ public class RulesLabel extends Label implements ItemInf  {
 	        @Override
 	        public void clicked(InputEvent event, float x, float y) {	          
 	            System.out.println("RulesLabel clicked");
-	        	okButton.setVisible(true); 
-	        	moveButton.setVisible(true); 
-	        	deleteButton.setVisible(true); 
-	        	
+	        		        	
 	        	setFocused(true);
 	        	sendMessage ();
 	        }
 	    });
+	    
+	    if ( item != null)
+	    	this.setText(item.title);
 
 	    	    	    
 	    
@@ -144,6 +145,9 @@ public class RulesLabel extends Label implements ItemInf  {
 	 */
 	@Override
 	public void setFocused(boolean focused) {
+		okButton.setVisible(focused); 
+    	moveButton.setVisible(focused); 
+    	deleteButton.setVisible(focused); 
 		this.focused = focused;
 	}
 

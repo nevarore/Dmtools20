@@ -1,0 +1,6 @@
+Class;Description;Hit Die;Primary Ability;Saving Throw Proficiencies;Armor and Weapon Proficiencies;
+Cleric;A priestly champion who wields divine magic in service of a higher power;8;Wisdom;Wisdom & Charisma;Light and medium armor,shields,simple,weapons;
+Fighter;A master of martial combat, skilled with a variety of weapons and armor;10;Strength or Dexterity;Strength & Constitution;All armor, shields, simple and martial weapons;
+Rogue;A scoundrel who uses stealth and trickery to overcome obstacles and enemies;8;Dexterity;Dexterity & Intelligence;Light armor, simple weapons,hand crossbows, longswords,rapiers, shortswords;
+Wizard;A scholarly magic-user capable of manipulating the structures of reality;6;Intelligence;Intelligence & Wisdom;Daggers, darts, slings, quarterstaffs,light crossbows;
+

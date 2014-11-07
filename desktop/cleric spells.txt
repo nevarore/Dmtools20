@@ -1,0 +1,10 @@
+Cantrips (0 Level);1st Level;2nd Level;3rd Level;4th Level;5th Level;6th Level;7th Level;8th Level;9th Level;
+Guidance;Bless;Aid;Beacon of Hope;Death Ward;Commune;Blade Barrier;Etherealness;Antimagic Field;Astral Projection;
+Light;Command;Augury;Dispel Magic;Divination;Flame Strike;Find the Path;Fire Storm;Earthquake;Gate;
+Resistance;Cure Wounds;Hold Person;Mass Healing Word;Freedom of Movement;Greater Restoration;Harm;Regenerate;Holy Aura;Mass Heal;
+Sacred Flame;Detect Magic;Lesser Restoration;Protection from Energy;Guardian of Faith;Mass Cure Wounds;Heal;Resurrection;;True Resurrection;
+Spare the Dying;Guiding Bolt;Prayer of Healing;Remove Curse;Locate Creature;Raise Dead;Heroes’ Feast;;;;
+Thaumaturgy;Healing Word;Silence;Revivify;;;True Seeing;;;;
+;Inflict Wounds;Spiritual Weapon;Speak with Dead;;;;;;;
+;Sanctuary;Warding Bond;Spirit Guardians;;;;;;;
+;Shield of Faith;;;;;;;;;

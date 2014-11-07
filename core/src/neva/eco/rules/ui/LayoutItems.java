@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 
 public class LayoutItems {
-	HashMap <String, ItemInf> items;
+	public HashMap <String, ItemInf> items;
 
 	public LayoutItems() {
 		items = new HashMap <String, ItemInf> ();

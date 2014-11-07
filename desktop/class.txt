@@ -1,0 +1,27 @@
+lass
+Cleric
+Cleric
+Hit
+Die
+d8 Primary
+Ability
+Wisdom
+d10 d8 Strength
+or Dexterity
+Dexterity
+d6 Intelligence
+Saving Throw
+Proficiencies
+Wisdom & Charisma
+Armor and Weapon
+Proficiencies
+Light and medium armor, shields,
+simple weapons
+Strength & Constitution All armor, shields, simple and
+martial weapons
+Dexterity & Intelligence Light armor, simple weapons,
+hand crossbows, longswords,
+rapiers, shortswords
+Intelligence & Wisdom Daggers, darts, slings, quarterstaffs,
+light crossbows
+D&D Player’s Basic Rules v0.2 | Chapter 3: Classes

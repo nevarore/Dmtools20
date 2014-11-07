@@ -1,0 +1,15 @@
+Number;Cantrips (0 Level);1st Level;2nd Level;3rd Level;4th Level;5th Level;6th Level;7th Level;8th Level;9th Level;
+1;Acid Splash;Burning Hands;Arcane Lock;Counterspell;Arcane Eye;Cone of Cold;Chain Lightning;Delayed Blast Fireball;Dominate Monster;Foresight;
+2;Dancing Lights;Charm Person;Blur;Dispel Magic;Dimension Door;Dominate Person;Disintegrate;Finger of Death;Maze;Imprisonment;
+3;Fire Bolt;Comprehend Languages;Darkness;Fireball;Greater Invisibility;Dream;Globe of Invulnerability;Mordenkainen���s Sword;Power Word Stun;Meteor Swarm;
+4;Light;Detect Magic;Flaming Sphere;Fly;Ice Storm;Passwall;Mass Suggestion;Teleport;Sunburst;Power Word Kill;
+5;Mage Hand;Disguise Self;Hold Person;Haste;Stoneskin;Wall of Stone;Otto���s Irresistible Dance;;;Time Stop;
+6;Minor Illusion;Identify;Invisibility;Lightning Bolt;Wall of Fire;;True Seeing;;;;
+7;Poison Spray;Mage Armor;Knock;Major Image;;;;;;;
+8;Prestidigitation;Magic Missile;Levitate;Protection from Energy;;;;;;;
+9;Ray of Frost;Shield;Magic Weapon;;;;;;;;
+10;Shocking Grasp;Silent Image;Misty Step;;;;;;;;
+11;;Sleep;Shatter;;;;;;;;
+12;;Thunderwave;Spider Climb;;;;;;;;
+13;;;Suggestion;;;;;;;;
+14;;;Web;;;;;;;;
