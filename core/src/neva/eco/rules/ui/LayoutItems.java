@@ -3,6 +3,8 @@ package neva.eco.rules.ui;
 import java.util.HashMap;
 import java.util.Map;
 
+import neva.eco.rules.layout.Bound;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 
@@ -37,6 +39,7 @@ public class LayoutItems {
 				if ( it.isFocused())
 		    	{		    		
 		    		it.table.setBounds(x, y, 100, 30);
+		    		it.getItem().setBound(new Bound ((long)x, (long)y, 100, 30 ));
 		    	}	 
 			}		
 		}   	

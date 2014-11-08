@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import neva.eco.rules.core.Cell;
 import neva.eco.rules.core.TableCell;
@@ -46,6 +47,8 @@ public class MainScreen implements Screen, ItemsListener {
     
     private Stage stage;
 	private Skin skin;
+	private ScreenViewport screen;
+	
 	private LayoutItems items;
 	
 	HashMap <String, TableCell> table;
@@ -57,13 +60,13 @@ public class MainScreen implements Screen, ItemsListener {
                 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
-        ScreenViewport screen = new ScreenViewport();
+        screen = new ScreenViewport();
         stage = new Stage(screen);
 		Gdx.input.setInputProcessor(stage);
 		skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 		
 		initTable ();
-		loadLayout ();    
+		loadInitialLayout ();    
 		loadRules ();
 	    
 	    
@@ -103,7 +106,24 @@ public class MainScreen implements Screen, ItemsListener {
 	        
 	    });
 	    
-	    //*********************************************************************
+	    addMenu();
+	  
+	    
+	    // multi input test
+	    /*InputMultiplexer inputMultiplexer = new InputMultiplexer(Gdx.input.getInputProcessor());
+        //inputMultiplexer.addProcessor(new IsoCamController());
+        inputMultiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(inputMultiplexer);*/
+
+	    assignRules2Layout ();
+	    
+	    
+	    
+    }
+    
+    public void addMenu ()
+    {
+    	//*********************************************************************
 	    // menu
 	    TextField nameText = new TextField("tet", skin);
 	    nameText.setBounds(10, 10, 100, 30);
@@ -124,31 +144,55 @@ public class MainScreen implements Screen, ItemsListener {
 	        }
 	    });
 	    
-	    Table table = new Table();	
-	    table.setBounds(50, screen.getScreenHeight()-140, 200, 200);
+	    TextButton evalButton = new TextButton ( "Eval", skin );	   
+	    evalButton.addListener(new ClickListener(){
+	        @Override
+	        public void clicked(InputEvent event, float x, float y) {	            
+	        	System.out.println("Eval");
+	        	evalRules();
+	        	assignRules2Layout();
+	        	
+	        }
+	    });
 	    
-	    table.add(addressLabel);
-	    table.row();
-	    table.add(addressText).width(100);
-	    table.row();
+	    TextButton loadButton = new TextButton ( "Load", skin );	   
+	    loadButton.addListener(new ClickListener(){
+	        @Override
+	        public void clicked(InputEvent event, float x, float y) {	            
+	        	System.out.println("Load");
+	        	loadLayout();
+	        	assignRules2Layout();
+	        	
+	        }
+	    });
+	    
+	    TextButton saveButton = new TextButton ( "Save", skin );	   
+	    saveButton.addListener(new ClickListener(){
+	        @Override
+	        public void clicked(InputEvent event, float x, float y) {	            
+	        	System.out.println("Save");
+	        	saveLayout();
+	        	assignRules2Layout();
+	        	
+	        }
+	    });
+	    
+	    Table table = new Table();	
+	    table.setBounds(50, screen.getScreenHeight()-40, 400, 40);
+	    
+	    //table.add(addressLabel);
+	    //table.row();
+	    //table.add(addressText).width(100);
+	    //table.row();
 	    table.add(plusButton).width(100);
-	    table.row();    
+	    table.add(evalButton).width(100);
+	    table.add(loadButton).width(100);
+	    table.add(saveButton).width(100);
+	    
 	    //table.setFillParent(true);
 	    //table.setOrigin(100, 500);
 	    
 	    stage.addActor(table);
-	    
-	    
-	    // multi input test
-	    /*InputMultiplexer inputMultiplexer = new InputMultiplexer(Gdx.input.getInputProcessor());
-        //inputMultiplexer.addProcessor(new IsoCamController());
-        inputMultiplexer.addProcessor(stage);
-        Gdx.input.setInputProcessor(inputMultiplexer);*/
-
-	    assignRules2Layout ();
-	    
-	    
-	    
     }
 	
 
@@ -222,7 +266,7 @@ public class MainScreen implements Screen, ItemsListener {
 
 	}
 	
-	public void loadLayout ()
+	public void loadInitialLayout ()
 	{
 		items = new LayoutItems();
 		
@@ -253,6 +297,59 @@ public class MainScreen implements Screen, ItemsListener {
 		
 	}
 	
+	public void loadLayout ()
+	{
+		items = new LayoutItems();
+		stage.getActors().clear();
+		addMenu();
+		
+		HashMap<String, LayoutItem> layout;
+		try {
+			layout = LayoutJsonReader.jsonReader("layout_w.txt");
+		} catch (Exception e1) {			
+			e1.printStackTrace();
+			return;
+		}
+		
+		// eval
+		for (Map.Entry<String,LayoutItem> e : layout.entrySet()){
+			LayoutItem v = e.getValue();
+			System.out.println ("=========== Name " + v.name + " ===========");						
+			System.out.println ("Item: " + v.title + " = [" + v.layoutClassName + "] ->" + v.variableName);
+			
+			RulesLabel label = new RulesLabel(v.name, skin);
+			label.setItem(v);
+			
+			label.table.setBounds(v.bound.x, v.bound.y, v.bound.sizex,v.bound.sizey);
+			label.addListener(this);
+			label.setName("label1");
+			label.setFocused(false);
+		    items.add ( label, v.name);		    
+		    stage.addActor(label.table);
+		}
+		
+	}
+	
+	
+	public void saveLayout ()
+	{
+		HashMap<String, LayoutItem> layout = new HashMap<String, LayoutItem>();
+
+		// eval
+		for (Entry<String, ItemInf> e : items.items.entrySet()){
+			RulesLabel v = (RulesLabel) e.getValue();
+			LayoutItem it = v.getItem();
+			if ( it != null && it.title != null)
+				layout.put(it.title, it);
+			else
+				System.out.println ("Item not saved");
+		}
+
+		System.out.println ("=========== test WriterJSON ===========");
+		LayoutJsonReader.jsonWriter("layout_w.txt", layout);
+	}
+
+	
 	public void loadRules ()
 	{
 		System.out.println ("=========== test JSON ===========");
@@ -270,6 +367,35 @@ public class MainScreen implements Screen, ItemsListener {
 			return;
 		}
 
+		// eval
+		for (Map.Entry<String,Variable> e : var.entrySet()){
+			Variable v = e.getValue();
+			System.out.println ("=========== Eval " + v.name + " ===========");
+			if ( !v.rules.isAlreadyEval() || v.repeatable ) v.eval ( var, table);
+
+			System.out.println ("Variable: " + v.name + " = [" + v.value.getsValue() + "] ->" + v.value.getnValue());
+		}
+
+		// final var status 
+		System.out.println ("=========== Final Result ===========");
+		for (Map.Entry<String,Variable> e : var.entrySet()){
+			Variable v = e.getValue();
+
+			System.out.println ("Variable: " + v.name + " = [" + v.value.getsValue() + "] ->" + v.value.getnValue());
+			if ( v.rules.getCell() != null)
+			{
+				for ( int i = 0; i<v.rules.getCell().length; i++)
+				{
+					System.out.println ("=========> " + v.rules.getCell()[i].getsValue() );
+				}
+			}
+		}
+	}
+	
+	public void evalRules ()
+	{
+		System.out.println ("=========== Eval Rules ===========");		
+		
 		// eval
 		for (Map.Entry<String,Variable> e : var.entrySet()){
 			Variable v = e.getValue();
